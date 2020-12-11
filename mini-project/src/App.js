@@ -29,7 +29,6 @@ class App extends Component {
        
       </div>
     );
-    // return React.createElement('div', {className: 'App'}, createElement('h1',null, 'I need a null after any tap' ))
   }
 }
 
