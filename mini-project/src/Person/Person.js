@@ -3,8 +3,9 @@ import React from "react"
 const person = (props) => {
 return  (
 <div>
-<p> I'm {props.name} I have {props.age} years to live</p>
+<p onClick ={props.click}> I'm {props.name} I have {props.age} years to live</p>
 <p>{props.children}</p>
+<input type = "text" onChange = {props.changed} value = {props.name} />
 </div>
 )
 }
