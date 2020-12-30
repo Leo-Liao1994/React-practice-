@@ -13,7 +13,8 @@ class App extends Component {
       { name: 'Stephanie', age: 26 }
     ],
     userInput : "",
-    userOutput : ""
+    userOutput : "", 
+    showPersons : false
   }
 
   switchNameHandler = (newName) => {
@@ -21,6 +22,8 @@ class App extends Component {
     this.setState( {
       persons: [
         { name: newName, age: 28 },
+        { name: 'Manu', age: 29 },
+        { name: 'Stephanie', age: 26 }
       ]
     } )
   }
@@ -29,6 +32,8 @@ class App extends Component {
     this.setState( {
       persons: [
         { name: event.target.value, age: 29 },
+        { name: 'Manu', age: 28 },
+        { name: 'Stephanie', age: 26 }
       ]
     } )
   } 
@@ -45,26 +50,47 @@ class App extends Component {
     })
   }
 
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons; 
+    this.setState({showPersons : !doesShow});
+  }
+
   render () {
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
-        <button onClick={() => this.switchNameHandler('Maximilian!!')}>Switch Name</button>
-    
+        { this.state.showPersons ?
+        <button onClick={ this.togglePersonsHandler}>Hide Name</button> 
+        : 
+        <button onClick={ this.togglePersonsHandler}>Show Name</button> 
+        }
+        { this.state.showPersons ?
+          <div >
         <Person 
           name={this.state.persons[0].name} 
           age={this.state.persons[0].age}
           click={this.switchNameHandler.bind(this, 'Max!')}
           changed={this.nameChangedHandler} >My Hobbies: Racing
         </Person>
+        <Person
+          name={this.state.persons[1].name} 
+          age={this.state.persons[1].age} />
+         <Person
+          name={this.state.persons[2].name} 
+          age={this.state.persons[2].age} />
+          </div> : null
+          }
+
+        <div className = "user_section">
         <UserInput  
         input ={this.inputHandler}
-        inputclick  = {this.outputHandler}
-        > </UserInput>
+        inputclick  = {this.outputHandler}>
+        </UserInput>
         <UserOutput 
-          output = {this.state.userOutput}
-        ></UserOutput>
+          output = {this.state.userOutput}>
+        </UserOutput>
+        </div>
       </div>
       );  }
 }
