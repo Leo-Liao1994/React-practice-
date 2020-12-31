@@ -3,6 +3,7 @@ import './App.css';
 import Person from './Person/Person';
 import UserInput from './UserInput/output/UserInput';
 import UserOutput from './UserInput/output/UserOutput';
+import person from './Person/Person';
 
 
 class App extends Component {
@@ -56,17 +57,11 @@ class App extends Component {
   }
 
   render () {
-    return (
-      <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        <p>This is really working!</p>
-        { this.state.showPersons ?
-        <button onClick={ this.togglePersonsHandler}>Hide Name</button> 
-        : 
-        <button onClick={ this.togglePersonsHandler}>Show Name</button> 
-        }
-        { this.state.showPersons ?
-          <div >
+    let persons = null; 
+
+    if (this.state.showPersons) {
+      persons = (
+<div >
         <Person 
           name={this.state.persons[0].name} 
           age={this.state.persons[0].age}
@@ -79,8 +74,21 @@ class App extends Component {
          <Person
           name={this.state.persons[2].name} 
           age={this.state.persons[2].age} />
-          </div> : null
-          }
+          </div> 
+      )
+    }
+
+
+    return (
+      <div className="App">
+        <h1>Hi, I'm a React App</h1>
+        <p>This is really working!</p>
+        { this.state.showPersons ?
+        <button onClick={ this.togglePersonsHandler}>Hide Name</button> 
+        : 
+        <button onClick={ this.togglePersonsHandler}>Show Name</button> 
+        }
+        {persons}
 
         <div className = "user_section">
         <UserInput  
