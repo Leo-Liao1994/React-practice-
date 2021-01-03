@@ -6,7 +6,8 @@ const userOutput = props => {
   return (
  <div className = "userOutput">
    <p>This is what he wanted to say :</p>
-  <p className = "output" > {props.output}</p>
+  <p className = "output" > {props.output} </p>
+  <p> {props.count}</p>
  </div>
   
   )

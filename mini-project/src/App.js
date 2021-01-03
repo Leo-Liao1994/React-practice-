@@ -3,8 +3,7 @@ import './App.css';
 import Person from './Person/Person';
 import UserInput from './UserInput/output/UserInput';
 import UserOutput from './UserInput/output/UserOutput';
-import person from './Person/Person';
-
+import Validation from './Validation/Validation';
 
 class App extends Component {
   state = {
@@ -103,10 +102,16 @@ class App extends Component {
         inputclick  = {this.outputHandler}>
         </UserInput>
         <UserOutput 
-          output = {this.state.userOutput}>
+          output = {this.state.userOutput} 
+          count = {this.state.userOutput.length}
+          >
         </UserOutput>
         </div>
+        <Validation 
+          output = {this.state.userOutput.length}
+        ></Validation>
       </div>
+      
       );  }
 }
 
