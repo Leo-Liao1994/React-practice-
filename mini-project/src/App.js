@@ -14,7 +14,7 @@ class App extends Component {
     ],
     userInput : "",
     userOutput : "", 
-    showPersons : false
+    showPersons : false, 
   }
 
   nameChangedHandler = ( event, id ) => {
@@ -44,15 +44,24 @@ class App extends Component {
   }
 
   outputHandler = () => {
-    this.setState( {
+    this.setState({
          userOutput : this.state.userInput
     })
+    
   }
 
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons; 
     this.setState({showPersons : !doesShow});
   }
+
+  // ValidationHandler = () => {
+  //   let validated = this.state.validation[0]
+  //   if (this.state.userOutput.length >= 5) {
+  //     validated = this.state.validation[1]
+  //   }
+  // }
+
 
   deletePersonHandler = (personsIndex) => {
     const persons = [...this.state.persons]; 
@@ -79,11 +88,18 @@ class App extends Component {
       persons = (
           <div >
             {this.state.persons.map(personState)}
-       
           </div> 
       )
     }
 
+    let output = null
+    if (this.state.userOutput.length > 5) {
+      output = 'Text long enough'
+    } else if (this.state.userOutput.length < 5 && this.state.userOutput.length > 0) {
+      output = ' Text too short'
+    }; 
+
+    
 
     return (
       <div className="App">
@@ -109,6 +125,7 @@ class App extends Component {
         </div>
         <Validation 
           output = {this.state.userOutput.length}
+          validation = {output}
         ></Validation>
       </div>
       );  }
