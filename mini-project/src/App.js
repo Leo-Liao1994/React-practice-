@@ -111,7 +111,6 @@ class App extends Component {
           output = {this.state.userOutput.length}
         ></Validation>
       </div>
-      
       );  }
 }
 
