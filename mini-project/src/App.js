@@ -4,6 +4,8 @@ import Person from './Person/Person';
 import UserInput from './UserInput/output/UserInput';
 import UserOutput from './UserInput/output/UserOutput';
 import Validation from './Validation/Validation';
+import Char from './Char/Char';
+
 
 class App extends Component {
   state = {
@@ -90,7 +92,7 @@ class App extends Component {
             {this.state.persons.map(personState)}
           </div> 
       )
-    }
+    } 
 
     let output = null
     if (this.state.userOutput.length > 5) {
@@ -98,8 +100,11 @@ class App extends Component {
     } else if (this.state.userOutput.length < 5 && this.state.userOutput.length > 0) {
       output = ' Text too short'
     }; 
-
     
+    let char = this.state.userOutput.split('').map ((ch) => {
+      return <Char letter = {ch}></Char>
+    })
+
 
     return (
       <div className="App">
@@ -119,7 +124,6 @@ class App extends Component {
         </UserInput>
         <UserOutput 
           output = {this.state.userOutput} 
-          count = {this.state.userOutput.length}
           >
         </UserOutput>
         </div>
@@ -127,6 +131,7 @@ class App extends Component {
           output = {this.state.userOutput.length}
           validation = {output}
         ></Validation>
+        {char}
       </div>
       );  }
 }
